@@ -13,6 +13,26 @@ These outputs feed a stereo VO back-end: flow-based tracking, PnP, sparse stereo
 
 *KITTI odometry seq. 08. Top: left input. Middle: optical flow. Bottom: disparity.* ([mp4](demo.mp4))
 
+## Current numbers (pretrained baseline)
+
+Flow and stereo branches as initialised from UniMatch, before any fine-tuning.
+
+**KITTI 2015 training set** (200 frames, zero-shot, full resolution)
+
+| Task | EPE | Outliers |
+|---|---|---|
+| Optical flow | 5.50 px | Fl-all 17.4 % |
+| Disparity | 1.22 px | D1-all 5.70 % |
+
+**Virtual KITTI 2 validation** (320×960 crops, last 50 frames of each scene)
+
+| Task | EPE | Outliers |
+|---|---|---|
+| Optical flow | 0.57 px | Fl 2.8 % |
+| Disparity | 0.70 px | D1 3.6 % |
+
+Speed: about 160 ms per forward pass of the full network (bidirectional flow, two stereo pairs and heads) at 320×960 on an RTX 5090 in bf16.
+
 ## Status
 
 Work in progress. The demo shows the flow and stereo branches, which are initialised from
