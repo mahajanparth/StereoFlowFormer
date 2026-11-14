@@ -1,0 +1,41 @@
+# Stage 1b: joint fine-tuning of everything on Virtual KITTI 2 (initialised from stage 1a).
+name: stage1b_vkitti2
+seed: 0
+model:
+  num_slots: 8
+  share_backbone: false
+  flow_ckpt: checkpoints/unimatch/gmflow-scale2-regrefine6-things-776ed612.pth
+  stereo_ckpt: checkpoints/unimatch/gmstereo-scale2-regrefine3-resumeflowthings-sceneflow-f724fee6.pth
+  init: runs/stage1a_heads/checkpoints/latest.pth   # null -> start from the UniMatch weights
+data:
+  vkitti2_root: data/vkitti2
+  vkitti2_scenes: null          # null = all five scenes
+  crop: [320, 960]
+  num_workers: 2
+train:
+  batch_size: 3
+  iters: 10000
+  lr: 1.0e-4
+  branch_lr_mult: 0.1          # pretrained matching branches
+  branch_warm_iters: 2000      # ... raised to 1.0 after this many iterations
+  warmup: 500
+  weight_decay: 1.0e-4
+  grad_clip: 1.0
+  log_every: 50
+  vis_every: 1000
+  val_every: 2000
+  ckpt_every: 2000
+loss:
+  flow: 1.0
+  disp: 1.0
+  gamma: 0.9
+  pose_sup: 1.0
+  seg: 0.2
+  seg_start: 0
+  # self-supervised terms (off in stage 1)
+  flow_photo: 0.0
+  stereo_photo: 0.0
+  flow_smooth: 0.0
+  disp_smooth: 0.0
+  pose_rigid: 0.0
+  pose_kabsch: 0.0

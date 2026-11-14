@@ -1,0 +1,22 @@
+# Stage 2: self-supervised fine-tuning on KITTI odometry (00-08), mixed with VKITTI2 supervised batches.
+base: configs/vkitti2_sup.yaml
+name: stage2_kitti_selfsup
+model:
+  init: runs/stage1b_vkitti2/checkpoints/latest.pth
+data:
+  kitti_root: data/kitti_odometry
+  kitti_seqs: ['00', '01', '02', '03', '04', '05', '06', '07', '08']
+  vkitti_mix: 0.25             # fraction of iterations that use a supervised VKITTI2 batch
+train:
+  iters: 15000
+  lr: 5.0e-5
+  branch_lr_mult: 1.0
+  branch_warm_iters: 0
+loss:
+  seg_start: 0
+  flow_photo: 1.0
+  stereo_photo: 1.0
+  flow_smooth: 0.05
+  disp_smooth: 0.05
+  pose_rigid: 0.2
+  pose_kabsch: 0.05

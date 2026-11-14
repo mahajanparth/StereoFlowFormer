@@ -1,0 +1,13 @@
+# Stage 1a: train mask + pose heads on VKITTI2 with the pretrained matching branches frozen (fast).
+base: configs/vkitti2_sup.yaml
+name: stage1a_heads
+model:
+  init: null            # start from the UniMatch weights
+train:
+  freeze_branches: true
+  batch_size: 4
+  iters: 15000
+  lr: 3.0e-4
+  val_every: 1000
+loss:
+  seg_start: 0          # pseudo-labels come from dense-PnP geometry, independent of the pose head
