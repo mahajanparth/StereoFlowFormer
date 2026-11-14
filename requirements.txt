@@ -1,0 +1,14 @@
+# torch/torchvision: pip install torch torchvision --index-url https://download.pytorch.org/whl/cu128
+numpy<2.3
+scipy
+opencv-python
+einops
+timm
+open3d
+kornia
+pypose
+evo
+tensorboard
+pyyaml
+tqdm
+pytest
