@@ -1,0 +1,475 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 1744" width="1100" height="1744" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+<style>
+  :root { --bg:#ffffff; --ink:#1f2328; --mut:#59636e; --ln:#8c959f; --box:#f6f8fa; --bst:#d0d7de;
+          --fbg:#eef4fe; --fst:#4a7fd6; --fch:#ffffff;
+          --sbg:#ecf7f1; --sst:#2f9e6b; --sch:#ffffff;
+          --cbg:#fff6e6; --cst:#c98515;
+          --hbg:#f4eefd; --hst:#8a5cd1;
+          --tr:#c2410c; --trbg:#fff3ec; --dim:#0969da; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#0d1117; --ink:#e6edf3; --mut:#9198a1; --ln:#6e7681; --box:#161b22; --bst:#3d444d;
+            --fbg:#111f36; --fst:#6ea2ff; --fch:#0d1117;
+            --sbg:#0f2a1f; --sst:#3fbf85; --sch:#0d1117;
+            --cbg:#2b2110; --cst:#e3a43a;
+            --hbg:#221a35; --hst:#a98bea;
+            --tr:#f0883e; --trbg:#2a1a10; --dim:#58a6ff; }
+  }
+  .bg { fill:var(--bg); }
+  .gen { fill:var(--box); stroke:var(--bst); stroke-width:1.2; }
+  .fl { fill:var(--fbg); stroke:var(--fst); stroke-width:1.4; }
+  .fc { fill:var(--fch); stroke:var(--fst); stroke-width:1; }
+  .st { fill:var(--sbg); stroke:var(--sst); stroke-width:1.4; }
+  .sc { fill:var(--sch); stroke:var(--sst); stroke-width:1; }
+  .cx { fill:var(--cbg); stroke:var(--cst); stroke-width:1.4; }
+  .cxc { fill:var(--bg); stroke:var(--cst); stroke-width:1; }
+  .hd { fill:var(--hbg); stroke:var(--hst); stroke-width:1.4; }
+  .tr { fill:var(--trbg); stroke:var(--tr); stroke-width:1.4; }
+  .trc { fill:var(--bg); stroke:var(--tr); stroke-width:1; }
+  .ln { stroke:var(--ln); stroke-width:1.6; }
+  .lnt { stroke:var(--tr); stroke-width:1.6; stroke-dasharray:5 4; }
+  .ahf { fill:var(--ln); }
+  .ahtf { fill:var(--tr); }
+  .dot { fill:var(--ln); }
+  .sep { stroke:var(--bst); stroke-width:1; }
+  text { fill:var(--ink); }
+  .h1 { font-size:21px; font-weight:700; }
+  .h1s { font-size:13.5px; fill:var(--mut); }
+  .t { font-size:15px; font-weight:700; }
+  .s { font-size:12px; fill:var(--mut); }
+  .b { font-size:12.5px; }
+  .bb { font-size:12.5px; font-weight:600; }
+  .m { font-size:12.5px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+  .ct { font-size:12px; font-weight:600; }
+  .cs { font-size:10.5px; fill:var(--mut); }
+  .lab { font-size:11.5px; fill:var(--mut); }
+  .badge { font-size:11px; fill:var(--mut); font-style:italic; }
+  .dim { font-size:11.5px; font-weight:600; fill:var(--dim); }
+  .dimc { font-size:10.5px; font-weight:600; fill:var(--dim); }
+  .trt { font-size:14px; font-weight:700; fill:var(--tr); }
+</style>
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ahf"/></marker><marker id="aht" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ahtf"/></marker><linearGradient id="gFw" x1="0" x2="1"><stop offset="0" stop-color="#c58be0"/><stop offset="0.45" stop-color="#f3eef6"/><stop offset="0.55" stop-color="#eef6f0"/><stop offset="1" stop-color="#7fd0a0"/></linearGradient><linearGradient id="gBw" x1="0" x2="1"><stop offset="0" stop-color="#7fd0a0"/><stop offset="0.45" stop-color="#eef6f0"/><stop offset="0.55" stop-color="#f3eef6"/><stop offset="1" stop-color="#c58be0"/></linearGradient><linearGradient id="gDisp" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#1b0c41"/><stop offset="0.45" stop-color="#5c126e"/><stop offset="0.75" stop-color="#b63679"/><stop offset="1" stop-color="#fb9b06"/></linearGradient></defs>
+<rect width="1100" height="1744" class="bg"/>
+<text x="16" y="36" class="h1" text-anchor="start">StereoFlowFormer</text>
+<text x="16" y="60" class="lab" text-anchor="start">Shapes are per sample, C @ s  =  C × (s·H) × (s·W) for an H × W input.  At the 320 × 960 training crop: ⅛ → 40 × 120,  ¼ → 80 × 240,  1/16 → 20 × 60.</text>
+<rect x="16" y="76" width="110" height="616" rx="10" class="gen"/>
+<text x="28" y="100" class="t" text-anchor="start">Inputs</text>
+<text x="28" y="117" class="dim" text-anchor="start">3 × H × W each</text>
+<text x="28" y="133" class="cs" text-anchor="start">normalised,</text>
+<text x="28" y="146" class="cs" text-anchor="start">padded to /32</text>
+<svg x="28" y="176" width="86" height="46" viewBox="0 0 86 46"><g transform="translate(0,0)"><rect x="-10" width="106" height="46" fill="#cfe0f1"/><rect x="-10" y="20" width="106" height="26" fill="#a3ae9f"/><rect x="0" y="5" width="14" height="16" fill="#9aa3ad"/><rect x="16" y="10" width="10" height="11" fill="#b4bcc5"/><polygon points="26,46 40,20 47,20 70,46" fill="#6b7079"/><polygon points="42.6,22 44.4,22 46,30 41,30" fill="#e8e8e8"/><polygon points="40.5,34 47.5,34 49,42 38.5,42" fill="#e8e8e8"/><g transform="translate(0,0)"><rect x="52" y="22" width="16" height="9" rx="2" fill="#c8483f"/><rect x="55" y="18" width="10" height="6" rx="2" fill="#c8483f"/><circle cx="56" cy="31" r="2" fill="#222"/><circle cx="64" cy="31" r="2" fill="#222"/></g></g></svg>
+<text x="71" y="237" class="bb" text-anchor="middle">Lₜ</text>
+<svg x="28" y="304" width="86" height="46" viewBox="0 0 86 46"><g transform="translate(-4,0)"><rect x="-10" width="106" height="46" fill="#cfe0f1"/><rect x="-10" y="20" width="106" height="26" fill="#a3ae9f"/><rect x="0" y="5" width="14" height="16" fill="#9aa3ad"/><rect x="16" y="10" width="10" height="11" fill="#b4bcc5"/><polygon points="26,46 40,20 47,20 70,46" fill="#6b7079"/><polygon points="42.6,22 44.4,22 46,30 41,30" fill="#e8e8e8"/><polygon points="40.5,34 47.5,34 49,42 38.5,42" fill="#e8e8e8"/><g transform="translate(0,0)"><rect x="52" y="22" width="16" height="9" rx="2" fill="#c8483f"/><rect x="55" y="18" width="10" height="6" rx="2" fill="#c8483f"/><circle cx="56" cy="31" r="2" fill="#222"/><circle cx="64" cy="31" r="2" fill="#222"/></g></g></svg>
+<text x="71" y="365" class="bb" text-anchor="middle">Rₜ</text>
+<svg x="28" y="432" width="86" height="46" viewBox="0 0 86 46"><g transform="translate(0,0)"><rect x="-10" width="106" height="46" fill="#cfe0f1"/><rect x="-10" y="20" width="106" height="26" fill="#a3ae9f"/><rect x="0" y="5" width="14" height="16" fill="#9aa3ad"/><rect x="16" y="10" width="10" height="11" fill="#b4bcc5"/><polygon points="26,46 40,20 47,20 70,46" fill="#6b7079"/><polygon points="42.6,22 44.4,22 46,30 41,30" fill="#e8e8e8"/><polygon points="40.5,34 47.5,34 49,42 38.5,42" fill="#e8e8e8"/><g transform="translate(-6,0)"><rect x="52" y="22" width="16" height="9" rx="2" fill="#c8483f"/><rect x="55" y="18" width="10" height="6" rx="2" fill="#c8483f"/><circle cx="56" cy="31" r="2" fill="#222"/><circle cx="64" cy="31" r="2" fill="#222"/></g></g></svg>
+<text x="71" y="493" class="bb" text-anchor="middle">Lₜ₊₁</text>
+<svg x="28" y="560" width="86" height="46" viewBox="0 0 86 46"><g transform="translate(-4,0)"><rect x="-10" width="106" height="46" fill="#cfe0f1"/><rect x="-10" y="20" width="106" height="26" fill="#a3ae9f"/><rect x="0" y="5" width="14" height="16" fill="#9aa3ad"/><rect x="16" y="10" width="10" height="11" fill="#b4bcc5"/><polygon points="26,46 40,20 47,20 70,46" fill="#6b7079"/><polygon points="42.6,22 44.4,22 46,30 41,30" fill="#e8e8e8"/><polygon points="40.5,34 47.5,34 49,42 38.5,42" fill="#e8e8e8"/><g transform="translate(-6,0)"><rect x="52" y="22" width="16" height="9" rx="2" fill="#c8483f"/><rect x="55" y="18" width="10" height="6" rx="2" fill="#c8483f"/><circle cx="56" cy="31" r="2" fill="#222"/><circle cx="64" cy="31" r="2" fill="#222"/></g></g></svg>
+<text x="71" y="621" class="bb" text-anchor="middle">Rₜ₊₁</text>
+<rect x="156" y="76" width="640" height="296" rx="10" class="fl"/>
+<text x="170" y="100" class="t" text-anchor="start">Flow branch  ·  Lₜ ↔ Lₜ₊₁</text>
+<text x="784" y="100" class="badge" text-anchor="end">transformer 6 layers · 1 head · d 128 · FFN ×4  ·  init: UniMatch GMFlow</text>
+<text x="184" y="172.0" class="t" text-anchor="middle">⅛</text>
+<text x="184" y="188.0" class="cs" text-anchor="middle">res</text>
+<text x="184" y="294.0" class="t" text-anchor="middle">¼</text>
+<text x="184" y="310.0" class="cs" text-anchor="middle">res</text>
+<rect x="208" y="116" width="90" height="230" rx="7" class="fc"/>
+<text x="253.0" y="135" class="ct" text-anchor="middle">CNN encoder</text>
+<text x="253.0" y="151" class="cs" text-anchor="middle">ResNet, shared</text>
+<text x="253.0" y="165" class="cs" text-anchor="middle">by both images</text>
+<text x="253.0" y="179" class="cs" text-anchor="middle"></text>
+<text x="253.0" y="193" class="cs" text-anchor="middle">outputs at ⅛</text>
+<text x="253.0" y="207" class="cs" text-anchor="middle">and at ¼</text>
+<line x1="216" y1="215" x2="290" y2="215" class="sep"/>
+<text x="253.0" y="230" class="dimc" text-anchor="middle">128 @ ⅛</text>
+<text x="253.0" y="244" class="dimc" text-anchor="middle">128 @ ¼</text>
+<rect x="306" y="116" width="90" height="108" rx="7" class="fc"/>
+<text x="351.0" y="135" class="ct" text-anchor="middle">Transformer</text>
+<text x="351.0" y="151" class="cs" text-anchor="middle">6 layers, swin</text>
+<text x="351.0" y="165" class="cs" text-anchor="middle">2 × 2 windows</text>
+<line x1="314" y1="173" x2="388" y2="173" class="sep"/>
+<text x="351.0" y="188" class="dimc" text-anchor="middle">128 @ ⅛</text>
+<polyline points="298,146 305,146" class="ln" fill="none" marker-end="url(#ah)"/>
+<rect x="404" y="116" width="90" height="108" rx="7" class="fc"/>
+<text x="449.0" y="135" class="ct" text-anchor="middle">Global corr</text>
+<text x="449.0" y="151" class="cs" text-anchor="middle">all pairs, soft-</text>
+<text x="449.0" y="165" class="cs" text-anchor="middle">max; bw = transp.</text>
+<line x1="412" y1="173" x2="486" y2="173" class="sep"/>
+<text x="449.0" y="188" class="dimc" text-anchor="middle">hw × hw</text>
+<text x="449.0" y="202" class="dimc" text-anchor="middle">→ flow 2 @ ⅛</text>
+<polyline points="396,146 403,146" class="ln" fill="none" marker-end="url(#ah)"/>
+<rect x="502" y="116" width="90" height="108" rx="7" class="fc"/>
+<text x="547.0" y="135" class="ct" text-anchor="middle">Propagation</text>
+<text x="547.0" y="151" class="cs" text-anchor="middle">global self-attn</text>
+<text x="547.0" y="165" class="cs" text-anchor="middle">fills occlusions</text>
+<line x1="510" y1="173" x2="584" y2="173" class="sep"/>
+<text x="547.0" y="188" class="dimc" text-anchor="middle">2 @ ⅛</text>
+<polyline points="494,146 501,146" class="ln" fill="none" marker-end="url(#ah)"/>
+<rect x="306" y="238" width="90" height="108" rx="7" class="fc"/>
+<text x="351.0" y="257" class="ct" text-anchor="middle">Warp + attn</text>
+<text x="351.0" y="273" class="cs" text-anchor="middle">warp Lₜ₊₁ feats,</text>
+<text x="351.0" y="287" class="cs" text-anchor="middle">swin 8 × 8</text>
+<line x1="314" y1="295" x2="388" y2="295" class="sep"/>
+<text x="351.0" y="310" class="dimc" text-anchor="middle">128 @ ¼</text>
+<polyline points="298,268 305,268" class="ln" fill="none" marker-end="url(#ah)"/>
+<rect x="404" y="238" width="90" height="108" rx="7" class="fc"/>
+<text x="449.0" y="257" class="ct" text-anchor="middle">Local corr</text>
+<text x="449.0" y="273" class="cs" text-anchor="middle">9 × 9 window,</text>
+<text x="449.0" y="287" class="cs" text-anchor="middle">residual flow</text>
+<line x1="412" y1="295" x2="486" y2="295" class="sep"/>
+<text x="449.0" y="310" class="dimc" text-anchor="middle">81 → 2 @ ¼</text>
+<polyline points="396,268 403,268" class="ln" fill="none" marker-end="url(#ah)"/>
+<rect x="502" y="238" width="90" height="108" rx="7" class="fc"/>
+<text x="547.0" y="257" class="ct" text-anchor="middle">Propagation</text>
+<text x="547.0" y="273" class="cs" text-anchor="middle">3 × 3 local</text>
+<text x="547.0" y="287" class="cs" text-anchor="middle">self-attn</text>
+<line x1="510" y1="295" x2="584" y2="295" class="sep"/>
+<text x="547.0" y="310" class="dimc" text-anchor="middle">2 @ ¼</text>
+<polyline points="494,268 501,268" class="ln" fill="none" marker-end="url(#ah)"/>
+<rect x="600" y="238" width="90" height="108" rx="7" class="fc"/>
+<text x="645.0" y="257" class="ct" text-anchor="middle">GRU refine</text>
+<text x="645.0" y="273" class="cs" text-anchor="middle">×6 iterations,</text>
+<text x="645.0" y="287" class="cs" text-anchor="middle">corr r = 4</text>
+<line x1="608" y1="295" x2="682" y2="295" class="sep"/>
+<text x="645.0" y="310" class="dimc" text-anchor="middle">hidden 128</text>
+<text x="645.0" y="324" class="dimc" text-anchor="middle">corr 81 @ ¼</text>
+<polyline points="592,268 599,268" class="ln" fill="none" marker-end="url(#ah)"/>
+<rect x="698" y="238" width="90" height="108" rx="7" class="fc"/>
+<text x="743.0" y="257" class="ct" text-anchor="middle">Upsample ×4</text>
+<text x="743.0" y="273" class="cs" text-anchor="middle">convex, 3 × 3</text>
+<text x="743.0" y="287" class="cs" text-anchor="middle">neighbours</text>
+<line x1="706" y1="295" x2="780" y2="295" class="sep"/>
+<text x="743.0" y="310" class="dimc" text-anchor="middle">mask 144 @ ¼</text>
+<text x="743.0" y="324" class="dimc" text-anchor="middle">→ 2 × H × W</text>
+<polyline points="690,268 697,268" class="ln" fill="none" marker-end="url(#ah)"/>
+<polyline points="547.0,224 547.0,231 351.0,231 351.0,237" class="ln" fill="none" marker-end="url(#ah)"/>
+<text x="553.0" y="235" class="cs" text-anchor="start">estimate ↑×2</text>
+<text x="170" y="360" class="lab" text-anchor="start">out: flow fw / bw 2 × H × W  ·  flow 2 @ ¼  ·  Lₜ feature 128 @ ¼  ·  fw and bw run as one batch at ¼  (hw = H/8 · W/8)</text>
+<polyline points="126,136 207,136" class="ln" fill="none" marker-end="url(#ah)"/>
+<rect x="156" y="396" width="640" height="296" rx="10" class="st"/>
+<text x="170" y="420" class="t" text-anchor="start">Stereo branch  ·  (Lₜ, Rₜ), (Lₜ₊₁, Rₜ₊₁)</text>
+<text x="784" y="420" class="badge" text-anchor="end">cross-attention along image rows  ·  init: UniMatch GMStereo</text>
+<text x="184" y="492.0" class="t" text-anchor="middle">⅛</text>
+<text x="184" y="508.0" class="cs" text-anchor="middle">res</text>
+<text x="184" y="614.0" class="t" text-anchor="middle">¼</text>
+<text x="184" y="630.0" class="cs" text-anchor="middle">res</text>
+<rect x="208" y="436" width="90" height="230" rx="7" class="sc"/>
+<text x="253.0" y="455" class="ct" text-anchor="middle">CNN encoder</text>
+<text x="253.0" y="471" class="cs" text-anchor="middle">ResNet, shared</text>
+<text x="253.0" y="485" class="cs" text-anchor="middle">by both images</text>
+<text x="253.0" y="499" class="cs" text-anchor="middle"></text>
+<text x="253.0" y="513" class="cs" text-anchor="middle">outputs at ⅛</text>
+<text x="253.0" y="527" class="cs" text-anchor="middle">and at ¼</text>
+<line x1="216" y1="535" x2="290" y2="535" class="sep"/>
+<text x="253.0" y="550" class="dimc" text-anchor="middle">128 @ ⅛</text>
+<text x="253.0" y="564" class="dimc" text-anchor="middle">128 @ ¼</text>
+<rect x="306" y="436" width="90" height="108" rx="7" class="sc"/>
+<text x="351.0" y="455" class="ct" text-anchor="middle">Transformer</text>
+<text x="351.0" y="471" class="cs" text-anchor="middle">self: swin 2 × 2</text>
+<text x="351.0" y="485" class="cs" text-anchor="middle">cross: 1D rows</text>
+<line x1="314" y1="493" x2="388" y2="493" class="sep"/>
+<text x="351.0" y="508" class="dimc" text-anchor="middle">128 @ ⅛</text>
+<polyline points="298,466 305,466" class="ln" fill="none" marker-end="url(#ah)"/>
+<rect x="404" y="436" width="90" height="108" rx="7" class="sc"/>
+<text x="449.0" y="455" class="ct" text-anchor="middle">Epipolar corr</text>
+<text x="449.0" y="471" class="cs" text-anchor="middle">softmax along</text>
+<text x="449.0" y="485" class="cs" text-anchor="middle">row, disp ≥ 0</text>
+<line x1="412" y1="493" x2="486" y2="493" class="sep"/>
+<text x="449.0" y="508" class="dimc" text-anchor="middle">h × w × w</text>
+<text x="449.0" y="522" class="dimc" text-anchor="middle">→ disp 1 @ ⅛</text>
+<polyline points="396,466 403,466" class="ln" fill="none" marker-end="url(#ah)"/>
+<rect x="502" y="436" width="90" height="108" rx="7" class="sc"/>
+<text x="547.0" y="455" class="ct" text-anchor="middle">Propagation</text>
+<text x="547.0" y="471" class="cs" text-anchor="middle">global self-attn</text>
+<text x="547.0" y="485" class="cs" text-anchor="middle">fills occlusions</text>
+<line x1="510" y1="493" x2="584" y2="493" class="sep"/>
+<text x="547.0" y="508" class="dimc" text-anchor="middle">1 @ ⅛</text>
+<polyline points="494,466 501,466" class="ln" fill="none" marker-end="url(#ah)"/>
+<rect x="306" y="558" width="90" height="108" rx="7" class="sc"/>
+<text x="351.0" y="577" class="ct" text-anchor="middle">Warp + attn</text>
+<text x="351.0" y="593" class="cs" text-anchor="middle">shift R feats,</text>
+<text x="351.0" y="607" class="cs" text-anchor="middle">swin 8 × 8</text>
+<line x1="314" y1="615" x2="388" y2="615" class="sep"/>
+<text x="351.0" y="630" class="dimc" text-anchor="middle">128 @ ¼</text>
+<polyline points="298,588 305,588" class="ln" fill="none" marker-end="url(#ah)"/>
+<rect x="404" y="558" width="90" height="108" rx="7" class="sc"/>
+<text x="449.0" y="577" class="ct" text-anchor="middle">Local corr</text>
+<text x="449.0" y="593" class="cs" text-anchor="middle">1D, 9 px</text>
+<text x="449.0" y="607" class="cs" text-anchor="middle">along the row</text>
+<line x1="412" y1="615" x2="486" y2="615" class="sep"/>
+<text x="449.0" y="630" class="dimc" text-anchor="middle">9 → 1 @ ¼</text>
+<polyline points="396,588 403,588" class="ln" fill="none" marker-end="url(#ah)"/>
+<rect x="502" y="558" width="90" height="108" rx="7" class="sc"/>
+<text x="547.0" y="577" class="ct" text-anchor="middle">Propagation</text>
+<text x="547.0" y="593" class="cs" text-anchor="middle">3 × 3 local</text>
+<text x="547.0" y="607" class="cs" text-anchor="middle">self-attn</text>
+<line x1="510" y1="615" x2="584" y2="615" class="sep"/>
+<text x="547.0" y="630" class="dimc" text-anchor="middle">1 @ ¼</text>
+<polyline points="494,588 501,588" class="ln" fill="none" marker-end="url(#ah)"/>
+<rect x="600" y="558" width="90" height="108" rx="7" class="sc"/>
+<text x="645.0" y="577" class="ct" text-anchor="middle">GRU refine</text>
+<text x="645.0" y="593" class="cs" text-anchor="middle">×3 iterations,</text>
+<text x="645.0" y="607" class="cs" text-anchor="middle">corr r = 4</text>
+<line x1="608" y1="615" x2="682" y2="615" class="sep"/>
+<text x="645.0" y="630" class="dimc" text-anchor="middle">hidden 128</text>
+<text x="645.0" y="644" class="dimc" text-anchor="middle">corr 81 @ ¼</text>
+<polyline points="592,588 599,588" class="ln" fill="none" marker-end="url(#ah)"/>
+<rect x="698" y="558" width="90" height="108" rx="7" class="sc"/>
+<text x="743.0" y="577" class="ct" text-anchor="middle">Upsample ×4</text>
+<text x="743.0" y="593" class="cs" text-anchor="middle">convex, 3 × 3</text>
+<text x="743.0" y="607" class="cs" text-anchor="middle">neighbours</text>
+<line x1="706" y1="615" x2="780" y2="615" class="sep"/>
+<text x="743.0" y="630" class="dimc" text-anchor="middle">mask 144 @ ¼</text>
+<text x="743.0" y="644" class="dimc" text-anchor="middle">→ 1 × H × W</text>
+<polyline points="690,588 697,588" class="ln" fill="none" marker-end="url(#ah)"/>
+<polyline points="547.0,544 547.0,551 351.0,551 351.0,557" class="ln" fill="none" marker-end="url(#ah)"/>
+<text x="553.0" y="555" class="cs" text-anchor="start">estimate ↑×2</text>
+<text x="170" y="680" class="lab" text-anchor="start">out: disparity 1 × H × W at t and t+1 (both pairs as one batch)  ·  disparity 1 @ ¼  ·  Lₜ feature 128 @ ¼</text>
+<polyline points="126,456 207,456" class="ln" fill="none" marker-end="url(#ah)"/>
+<rect x="836" y="76" width="248" height="296" rx="10" class="fl"/>
+<text x="850" y="100" class="t" text-anchor="start">Optical flow</text>
+<svg x="850" y="116" width="104" height="56" viewBox="0 0 86 46"><rect width="86" height="46" fill="url(#gFw)"/><rect x="0" y="20" width="86" height="26" fill="#ffffff" opacity="0.25"/><rect x="52" y="18" width="16" height="13" rx="2" fill="#e3a43a"/></svg>
+<svg x="966" y="116" width="104" height="56" viewBox="0 0 86 46"><rect width="86" height="46" fill="url(#gBw)"/><rect x="0" y="20" width="86" height="26" fill="#ffffff" opacity="0.25"/><rect x="52" y="18" width="16" height="13" rx="2" fill="#e3a43a"/></svg>
+<text x="902" y="190" class="lab" text-anchor="middle">forward</text>
+<text x="1018" y="190" class="lab" text-anchor="middle">backward</text>
+<text x="850" y="218" class="dim" text-anchor="start">2 × H × W each (px)</text>
+<line x1="850" y1="236" x2="1070" y2="236" class="sep"/>
+<text x="850" y="258" class="bb" text-anchor="start">used by</text>
+<text x="850" y="280" class="b" text-anchor="start">geometry @ ¼ (row below)</text>
+<text x="850" y="300" class="b" text-anchor="start">photometric + occlusion masks</text>
+<text x="850" y="320" class="b" text-anchor="start">VO: track points, fb &lt; 1 px</text>
+<polyline points="796,268 835,268" class="ln" fill="none" marker-end="url(#ah)"/>
+<rect x="836" y="396" width="248" height="296" rx="10" class="st"/>
+<text x="850" y="420" class="t" text-anchor="start">Disparity → depth</text>
+<svg x="850" y="436" width="104" height="56" viewBox="0 0 86 46"><rect width="86" height="46" fill="url(#gDisp)"/><rect x="52" y="18" width="16" height="13" rx="2" fill="#f4a259"/><rect x="0" y="5" width="14" height="16" fill="#3b1a63"/></svg>
+<svg x="966" y="436" width="104" height="56" viewBox="0 0 86 46"><rect width="86" height="46" fill="url(#gDisp)"/><rect x="46" y="18" width="16" height="13" rx="2" fill="#f4a259"/><rect x="0" y="5" width="14" height="16" fill="#3b1a63"/></svg>
+<text x="902" y="510" class="lab" text-anchor="middle">dispₜ</text>
+<text x="1018" y="510" class="lab" text-anchor="middle">dispₜ₊₁</text>
+<text x="850" y="538" class="dim" text-anchor="start">1 × H × W each (px)</text>
+<line x1="850" y1="556" x2="1070" y2="556" class="sep"/>
+<text x="850" y="578" class="bb" text-anchor="start">used by</text>
+<text x="850" y="600" class="b" text-anchor="start">depth = f · b / disp</text>
+<text x="850" y="620" class="b" text-anchor="start">geometry @ ¼, stereo photometric</text>
+<text x="850" y="640" class="b" text-anchor="start">VO: landmarks, map</text>
+<polyline points="796,588 835,588" class="ln" fill="none" marker-end="url(#ah)"/>
+<polyline points="816,268 816,722 136,722" class="ln" fill="none"/>
+<circle cx="816" cy="268" r="3.2" class="dot"/><circle cx="816" cy="588" r="3.2" class="dot"/>
+<polyline points="136,722 136,761" class="ln" fill="none" marker-end="url(#ah)"/>
+<polyline points="416,722 416,761" class="ln" fill="none" marker-end="url(#ah)"/>
+<circle cx="416" cy="722" r="3.2" class="dot"/>
+<text x="476" y="715" class="lab" text-anchor="middle">flow 2 @ ¼  ·  dispₜ, dispₜ₊₁ 1 @ ¼  ·  Lₜ features 128 @ ¼ from each transformer</text>
+<rect x="16" y="762" width="240" height="400" rx="10" class="gen"/>
+<text x="30" y="786" class="t" text-anchor="start">Geometry @ ¼ res</text>
+<text x="30" y="806" class="cs" text-anchor="start">closed form, fp32, no learned weights</text>
+<text x="30" y="834" class="m" text-anchor="start">depth = f · b / disp</text>
+<text x="242" y="834" class="dim" text-anchor="end">1 @ ¼</text>
+<text x="30" y="856" class="m" text-anchor="start">Xₜ = depth · K⁻¹ p</text>
+<text x="242" y="856" class="dim" text-anchor="end">3 @ ¼</text>
+<text x="30" y="878" class="m" text-anchor="start">scene flow =</text>
+<text x="30" y="900" class="m" text-anchor="start">  Xₜ₊₁(p + flow) − Xₜ</text>
+<text x="242" y="900" class="dim" text-anchor="end">3 @ ¼</text>
+<text x="30" y="922" class="cs" text-anchor="start">K rescaled to the ¼ grid; Xₜ₊₁ sampled</text>
+<text x="30" y="936" class="cs" text-anchor="start">bilinearly at p + flow (both frames)</text>
+<line x1="30" y1="950" x2="242" y2="950" class="sep"/>
+<text x="30" y="972" class="bb" text-anchor="start">Geometric encoding</text>
+<text x="242" y="972" class="dim" text-anchor="end">8 @ ¼</text>
+<text x="30" y="998" class="b" text-anchor="start">flow / f</text>
+<text x="30" y="1011" class="cs" text-anchor="start">× 10</text>
+<text x="242" y="998" class="lab" text-anchor="end">2</text>
+<text x="30" y="1028" class="b" text-anchor="start">inverse depth</text>
+<text x="30" y="1041" class="cs" text-anchor="start">× 5, depth ≥ 0.5 m</text>
+<text x="242" y="1028" class="lab" text-anchor="end">1</text>
+<text x="30" y="1058" class="b" text-anchor="start">ray directions K⁻¹ p</text>
+<text x="242" y="1058" class="lab" text-anchor="end">2</text>
+<text x="30" y="1088" class="b" text-anchor="start">3D scene flow</text>
+<text x="30" y="1101" class="cs" text-anchor="start">clip ± 5 m</text>
+<text x="242" y="1088" class="lab" text-anchor="end">3</text>
+<text x="30" y="1130" class="cs" text-anchor="start">gradient stopped: the heads cannot</text>
+<text x="30" y="1144" class="cs" text-anchor="start">change the flow or depth estimates</text>
+<rect x="296" y="762" width="240" height="400" rx="10" class="cx"/>
+<text x="310" y="786" class="t" text-anchor="start">Context encoder</text>
+<rect x="310" y="802" width="96" height="16" rx="3" class="fc"/>
+<text x="358.0" y="814" class="cs" text-anchor="middle">flow 128</text>
+<rect x="410" y="802" width="96" height="16" rx="3" class="sc"/>
+<text x="458.0" y="814" class="cs" text-anchor="middle">stereo 128</text>
+<rect x="510" y="802" width="12" height="16" rx="3" class="gen"/>
+<text x="516" y="832" class="cs" text-anchor="middle">geo 8</text>
+<text x="310" y="832" class="dim" text-anchor="start">concat → 264 @ ¼</text>
+<polyline points="416,838 416,850" class="ln" fill="none" marker-end="url(#ah)"/>
+<rect x="316" y="852" width="200" height="40" rx="7" class="cxc"/>
+<text x="416.0" y="871" class="ct" text-anchor="middle">conv 3 × 3, 264 → 128</text>
+<text x="416.0" y="887" class="cs" text-anchor="middle">GroupNorm (8 groups) · GELU</text>
+<polyline points="416,892 416,904" class="ln" fill="none" marker-end="url(#ah)"/>
+<rect x="316" y="906" width="200" height="40" rx="7" class="cxc"/>
+<text x="416.0" y="925" class="ct" text-anchor="middle">2 × ResBlock</text>
+<text x="416.0" y="941" class="cs" text-anchor="middle">(conv 3 × 3 · GN · GELU) × 2 + skip</text>
+<text x="416" y="964" class="dim" text-anchor="middle">pixel features  128 @ ¼</text>
+<polyline points="416,970 416,982" class="ln" fill="none" marker-end="url(#ah)"/>
+<rect x="316" y="984" width="200" height="40" rx="7" class="cxc"/>
+<text x="416.0" y="1003" class="ct" text-anchor="middle">2 × conv 3 × 3, stride 2</text>
+<text x="416.0" y="1019" class="cs" text-anchor="middle">128 → 192 → 192 · GN · GELU</text>
+<polyline points="416,1024 416,1036" class="ln" fill="none" marker-end="url(#ah)"/>
+<rect x="316" y="1038" width="200" height="40" rx="7" class="cxc"/>
+<text x="416.0" y="1057" class="ct" text-anchor="middle">+ sine position encoding</text>
+<text x="416.0" y="1073" class="cs" text-anchor="middle">2D, 192-d, shared by both heads</text>
+<text x="416" y="1098" class="dim" text-anchor="middle">tokens  192 @ 1/16</text>
+<text x="416" y="1114" class="cs" text-anchor="middle">N = HW / 256 tokens (1200 at the crop)</text>
+<text x="416" y="1146" class="lab" text-anchor="middle">tokens → both heads, pixels → mask head</text>
+<polyline points="256,962 295,962" class="ln" fill="none" marker-end="url(#ah)"/>
+<polyline points="536,962 556,962" class="ln" fill="none"/>
+<polyline points="556,842 556,1057" class="ln" fill="none"/>
+<polyline points="556,842 575,842" class="ln" fill="none" marker-end="url(#ah)"/>
+<polyline points="556,1057 575,1057" class="ln" fill="none" marker-end="url(#ah)"/>
+<rect x="576" y="762" width="250" height="185" rx="10" class="hd"/>
+<text x="590" y="786" class="t" text-anchor="start">Pose head</text>
+<text x="590" y="810" class="b" text-anchor="start">bg mask (slot 0) avg-pooled to 1/16,</text>
+<text x="590" y="828" class="b" text-anchor="start">Linear 1 → 192, added to tokens + pos</text>
+<text x="590" y="846" class="b" text-anchor="start">prepend a learned pose token</text>
+<text x="590" y="864" class="b" text-anchor="start">4 pre-norm encoder layers</text>
+<text x="590" y="882" class="cs" text-anchor="start">    8 heads, FFN 768, no dropout</text>
+<text x="590" y="900" class="b" text-anchor="start">pose token → LayerNorm → Linear → 12</text>
+<text x="590" y="918" class="cs" text-anchor="start">rot × 0.05 rad, t × 1 m, log-var ∈ [−10, 10]</text>
+<text x="590" y="938" class="dim" text-anchor="start">in (N + 1) × 192  →  out 12</text>
+<rect x="576" y="977" width="250" height="185" rx="10" class="hd"/>
+<text x="590" y="1001" class="t" text-anchor="start">Mask head (Mask2Former-lite)</text>
+<text x="590" y="1025" class="b" text-anchor="start">8 learned slot queries + query pos</text>
+<text x="590" y="1043" class="b" text-anchor="start">3 × [self-attn → cross-attn → FFN]</text>
+<text x="590" y="1061" class="cs" text-anchor="start">    pre-norm, 8 heads, keys = 1/16 tokens</text>
+<text x="590" y="1079" class="b" text-anchor="start">MLP → one embedding per slot</text>
+<text x="590" y="1097" class="b" text-anchor="start">logits = embedding · proj(pixels) / √128</text>
+<text x="590" y="1115" class="b" text-anchor="start">softmax over slots, slot 0 = background</text>
+<text x="590" y="1133" class="cs" text-anchor="start">bilinear ×4 to full resolution</text>
+<text x="590" y="1153" class="dim" text-anchor="start">queries 8 × 192 → logits 8 @ ¼</text>
+<polyline points="700,977 700,948" class="ln" fill="none" marker-end="url(#ah)"/>
+<text x="708" y="966" class="lab" text-anchor="start">bg slot, pooled to N × 1, detached</text>
+<rect x="866" y="762" width="218" height="185" rx="10" class="hd"/>
+<text x="880" y="786" class="t" text-anchor="start">Ego-motion</text>
+<g opacity="0.55"><polygon points="886,806 914,806 906,820 894,820" class="hd"/><rect x="891" y="820" width="18" height="12" rx="2" class="hd"/></g>
+<g opacity="1.0"><polygon points="996,806 1024,806 1016,820 1004,820" class="hd"/><rect x="1001" y="820" width="18" height="12" rx="2" class="hd"/></g>
+<polyline points="922,816 988,816" class="ln" fill="none" marker-end="url(#ah)"/>
+<text x="955" y="808" class="lab" text-anchor="middle">R, t</text>
+<text x="880" y="860" class="dim" text-anchor="start">rotvec 3 (rad) + t 3 (m)</text>
+<text x="880" y="878" class="dim" text-anchor="start">log-variance 6</text>
+<text x="880" y="904" class="cs" text-anchor="start">Lₜ → Lₜ₊₁ camera motion; the</text>
+<text x="880" y="918" class="cs" text-anchor="start">variance weights BA pose priors</text>
+<rect x="866" y="977" width="218" height="185" rx="10" class="hd"/>
+<text x="880" y="1001" class="t" text-anchor="start">Motion-instance masks</text>
+<svg x="880" y="1015" width="96" height="54" viewBox="0 0 86 46"><rect width="86" height="46" fill="#46576b"/><rect x="52" y="18" width="16" height="13" rx="2" fill="#e5534b"/><rect x="10" y="22" width="13" height="10" rx="2" fill="#f0b429"/></svg>
+<text x="988" y="1031" class="lab" text-anchor="start">red, yellow:</text>
+<text x="988" y="1047" class="lab" text-anchor="start">moving objects</text>
+<text x="988" y="1063" class="lab" text-anchor="start">slate: static bg</text>
+<text x="880" y="1093" class="dim" text-anchor="start">8 × H × W, soft</text>
+<text x="880" y="1119" class="cs" text-anchor="start">VO keeps tracks with bg &gt; 0.5;</text>
+<text x="880" y="1133" class="cs" text-anchor="start">the map keeps static points only</text>
+<polyline points="826,842 865,842" class="ln" fill="none" marker-end="url(#ah)"/>
+<polyline points="826,1057 865,1057" class="ln" fill="none" marker-end="url(#ah)"/>
+<rect x="16" y="1198" width="1068" height="372" rx="10" class="tr" stroke-dasharray="6 4"/>
+<text x="30" y="1222" class="trt" text-anchor="start">Training  ·  no motion-mask labels, no KITTI poses</text>
+<text x="30" y="1246" class="bb" text-anchor="start">Mask pseudo-labels, recomputed every batch from the network’s own ¼-res geometry</text>
+<rect x="30" y="1258" width="196" height="82" rx="7" class="trc"/>
+<text x="128.0" y="1277" class="ct" text-anchor="middle">Dense robust PnP</text>
+<text x="128.0" y="1293" class="cs" text-anchor="middle">Gauss-Newton, 12 iterations</text>
+<text x="128.0" y="1307" class="cs" text-anchor="middle">Xₜ ↔ p + flow  →  ego R, t</text>
+<text x="128.0" y="1321" class="cs" text-anchor="middle">background dominates the scene</text>
+<rect x="240" y="1258" width="196" height="82" rx="7" class="trc"/>
+<text x="338.0" y="1277" class="ct" text-anchor="middle">Rigid-flow residual</text>
+<text x="338.0" y="1293" class="cs" text-anchor="middle">r = ‖flow − flow(R, t)‖</text>
+<text x="338.0" y="1307" class="cs" text-anchor="middle">u = change of the rigid flow for</text>
+<text x="338.0" y="1321" class="cs" text-anchor="middle">a 0.25 px disparity error</text>
+<polyline points="227,1299 239,1299" class="lnt" fill="none" marker-end="url(#aht)"/>
+<rect x="450" y="1258" width="196" height="82" rx="7" class="trc"/>
+<text x="548.0" y="1277" class="ct" text-anchor="middle">Two thresholds (¼ px)</text>
+<text x="548.0" y="1293" class="cs" text-anchor="middle">moving: r &gt; max(1, 0.08‖f‖) + 2u</text>
+<text x="548.0" y="1307" class="cs" text-anchor="middle">static:  r &lt; max(0.4, 0.04‖f‖) + u</text>
+<text x="548.0" y="1321" class="cs" text-anchor="middle">between / &gt; 40 m: ignore or static</text>
+<polyline points="437,1299 449,1299" class="lnt" fill="none" marker-end="url(#aht)"/>
+<rect x="660" y="1258" width="196" height="82" rx="7" class="trc"/>
+<text x="758.0" y="1277" class="ct" text-anchor="middle">Clean + instances</text>
+<text x="758.0" y="1293" class="cs" text-anchor="middle">3 × 3 majority, erode, ignore</text>
+<text x="758.0" y="1307" class="cs" text-anchor="middle">edge ring; connected components</text>
+<text x="758.0" y="1321" class="cs" text-anchor="middle">≥ 24 px, largest 7 kept</text>
+<polyline points="647,1299 659,1299" class="lnt" fill="none" marker-end="url(#aht)"/>
+<rect x="870" y="1258" width="196" height="82" rx="7" class="trc"/>
+<text x="968.0" y="1277" class="ct" text-anchor="middle">Hungarian CE + Dice</text>
+<text x="968.0" y="1293" class="cs" text-anchor="middle">slots 1…7 matched to instances</text>
+<text x="968.0" y="1307" class="cs" text-anchor="middle">fg CE weight 5, slot 0 = static</text>
+<text x="968.0" y="1321" class="cs" text-anchor="middle">+ 0.05 edge-aware smoothness</text>
+<polyline points="857,1299 869,1299" class="lnt" fill="none" marker-end="url(#aht)"/>
+<polyline points="700,1198 700,1163" class="lnt" fill="none" marker-end="url(#aht)"/>
+<text x="708" y="1188" class="lab" text-anchor="start">supervises the mask head</text>
+<line x1="30" y1="1356" x2="1070" y2="1356" class="sep"/>
+<text x="30" y="1380" class="bb" text-anchor="start">Losses (weight)</text>
+<text x="30" y="1402" class="lab" text-anchor="start">Supervised · Virtual KITTI 2</text>
+<text x="30" y="1424" class="b" text-anchor="start">flow: sequence L1 over all estimates, γ = 0.9</text>
+<text x="340" y="1424" class="dim" text-anchor="end">1.0</text>
+<text x="30" y="1444" class="b" text-anchor="start">disparity: sequence L1, γ = 0.9</text>
+<text x="340" y="1444" class="dim" text-anchor="end">1.0</text>
+<text x="30" y="1464" class="b" text-anchor="start">pose: Gaussian NLL with log-var, rot ×20</text>
+<text x="340" y="1464" class="dim" text-anchor="end">1.0</text>
+<text x="30" y="1484" class="b" text-anchor="start">masks: pseudo-label CE + Dice</text>
+<text x="340" y="1484" class="dim" text-anchor="end">0.2</text>
+<text x="370" y="1402" class="lab" text-anchor="start">Self-supervised · KITTI odometry 00–08</text>
+<text x="370" y="1424" class="b" text-anchor="start">flow: SSIM + L1 (α 0.85), fb occlusion mask</text>
+<text x="680" y="1424" class="dim" text-anchor="end">1.0</text>
+<text x="370" y="1444" class="b" text-anchor="start">stereo: R → L warp, SSIM + L1, t and t+1</text>
+<text x="680" y="1444" class="dim" text-anchor="end">1.0</text>
+<text x="370" y="1464" class="b" text-anchor="start">edge-aware smoothness, flow and disp</text>
+<text x="680" y="1464" class="dim" text-anchor="end">0.05</text>
+<text x="370" y="1484" class="b" text-anchor="start">pose: rigid flow ≈ flow on background</text>
+<text x="680" y="1484" class="dim" text-anchor="end">0.2</text>
+<text x="370" y="1504" class="b" text-anchor="start">pose ≈ dense-PnP ego-motion</text>
+<text x="680" y="1504" class="dim" text-anchor="end">0.05</text>
+<text x="370" y="1524" class="b" text-anchor="start">masks: pseudo-label CE + Dice</text>
+<text x="680" y="1524" class="dim" text-anchor="end">0.2</text>
+<text x="720" y="1380" class="bb" text-anchor="start">Stages</text>
+<rect x="720" y="1392" width="350" height="36" rx="6" class="trc"/>
+<text x="740" y="1415" class="trt" text-anchor="middle">1a</text>
+<text x="760" y="1407" class="cs" text-anchor="start">heads only, branches frozen · VKITTI2</text>
+<text x="760" y="1421" class="dimc" text-anchor="start">15k it, lr 3e-4</text>
+<rect x="720" y="1434" width="350" height="36" rx="6" class="trc"/>
+<text x="740" y="1457" class="trt" text-anchor="middle">1b</text>
+<text x="760" y="1449" class="cs" text-anchor="start">everything jointly · VKITTI2</text>
+<text x="760" y="1463" class="dimc" text-anchor="start">10k it, lr 1e-4, branches ×0.1 for 2k</text>
+<rect x="720" y="1476" width="350" height="36" rx="6" class="trc"/>
+<text x="740" y="1499" class="trt" text-anchor="middle">2</text>
+<text x="760" y="1491" class="cs" text-anchor="start">self-supervised KITTI + 25 % VKITTI2</text>
+<text x="760" y="1505" class="dimc" text-anchor="start">15k it, lr 5e-5 (hurt flow / disp)</text>
+<rect x="720" y="1518" width="350" height="36" rx="6" class="trc"/>
+<text x="740" y="1541" class="trt" text-anchor="middle">2b</text>
+<text x="760" y="1533" class="cs" text-anchor="start">heads only on KITTI, 1b branches</text>
+<text x="760" y="1547" class="dimc" text-anchor="start">5k it, lr 1e-4 · default checkpoint</text>
+<rect x="16" y="1594" width="1068" height="132" rx="10" class="gen"/>
+<text x="30" y="1618" class="t" text-anchor="start">Stereo VO back-end  ·  per frame, consumes flow, disparity, masks and the pose head</text>
+<rect x="30" y="1636" width="140" height="70" rx="7" class="fc"/>
+<text x="100.0" y="1655" class="ct" text-anchor="middle">Track</text>
+<text x="100.0" y="1671" class="cs" text-anchor="middle">move points by fw flow,</text>
+<text x="100.0" y="1685" class="cs" text-anchor="middle">fb &lt; 1 px, bg &gt; 0.5</text>
+<rect x="180" y="1636" width="140" height="70" rx="7" class="fc"/>
+<text x="250.0" y="1655" class="ct" text-anchor="middle">Initial pose</text>
+<text x="250.0" y="1671" class="cs" text-anchor="middle">dense robust PnP,</text>
+<text x="250.0" y="1685" class="cs" text-anchor="middle">flow + disp, stride 4</text>
+<polyline points="171,1671 179,1671" class="ln" fill="none" marker-end="url(#ah)"/>
+<rect x="330" y="1636" width="140" height="70" rx="7" class="fc"/>
+<text x="400.0" y="1655" class="ct" text-anchor="middle">PnP-RANSAC</text>
+<text x="400.0" y="1671" class="cs" text-anchor="middle">200 it, 2 px, ≥ 40</text>
+<text x="400.0" y="1685" class="cs" text-anchor="middle">inliers, LM refine</text>
+<polyline points="321,1671 329,1671" class="ln" fill="none" marker-end="url(#ah)"/>
+<rect x="480" y="1636" width="140" height="70" rx="7" class="fc"/>
+<text x="550.0" y="1655" class="ct" text-anchor="middle">Keyframe?</text>
+<text x="550.0" y="1671" class="cs" text-anchor="middle">tracks &lt; 50 %, or</text>
+<text x="550.0" y="1685" class="cs" text-anchor="middle">&gt; 60 px, or 10 frames</text>
+<polyline points="471,1671 479,1671" class="ln" fill="none" marker-end="url(#ah)"/>
+<rect x="630" y="1636" width="140" height="70" rx="7" class="fc"/>
+<text x="700.0" y="1655" class="ct" text-anchor="middle">New landmarks</text>
+<text x="700.0" y="1671" class="cs" text-anchor="middle">top up to 1500 points</text>
+<text x="700.0" y="1685" class="cs" text-anchor="middle">disp &gt; 2 px, depth &lt; 40 m</text>
+<polyline points="621,1671 629,1671" class="ln" fill="none" marker-end="url(#ah)"/>
+<rect x="780" y="1636" width="140" height="70" rx="7" class="cxc"/>
+<text x="850.0" y="1655" class="ct" text-anchor="middle">Local BA</text>
+<text x="850.0" y="1671" class="cs" text-anchor="middle">8 keyframes, 15 LM it,</text>
+<text x="850.0" y="1685" class="cs" text-anchor="middle">Huber + pose priors</text>
+<polyline points="771,1671 779,1671" class="ln" fill="none" marker-end="url(#ah)"/>
+<rect x="930" y="1636" width="140" height="70" rx="7" class="cxc"/>
+<text x="1000.0" y="1655" class="ct" text-anchor="middle">Global BA + map</text>
+<text x="1000.0" y="1671" class="cs" text-anchor="middle">30 LM it at the end,</text>
+<text x="1000.0" y="1685" class="cs" text-anchor="middle">points / TSDF, 0.1 m</text>
+<polyline points="921,1671 929,1671" class="ln" fill="none" marker-end="url(#ah)"/>
+</svg>
