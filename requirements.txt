@@ -10,5 +10,6 @@ pypose
 evo
 tensorboard
 pyyaml
+rerun-sdk
 tqdm
 pytest
