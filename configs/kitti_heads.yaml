@@ -1,0 +1,12 @@
+# Stage 2b: adapt mask + pose heads to real KITTI with the stage-1b matching branches frozen.
+# (Stage 2's photometric fine-tuning of the branches hurt KITTI 2015 flow/disparity, so the branches stay at stage 1b.)
+base: configs/kitti_selfsup.yaml
+name: stage2b_kitti_heads
+model:
+  init: runs/stage1b_vkitti2/checkpoints/step_010000.pth
+train:
+  freeze_branches: true
+  batch_size: 4
+  iters: 5000
+  lr: 1.0e-4
+  warmup: 200
