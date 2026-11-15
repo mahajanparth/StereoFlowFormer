@@ -4,12 +4,8 @@
 <img src="docs/rerun_seq09.gif" width="100%" alt="Online VO on KITTI 09 in the Rerun viewer">
 
 *Online stereo VO on KITTI odometry seq. 09 (first 300 frames) in the [Rerun](https://rerun.io) viewer.
-Left: trajectory (red) and keyframe point clouds. Right: left image with motion masks, optical
-flow, disparity, and tracked / PnP-inlier counts.* ([mp4](docs/rerun_seq09.mp4))
-
-<img src="demo.gif" alt="Flow and stereo on KITTI 08">
-
-*KITTI odometry seq. 08. Top: left input. Middle: optical flow. Bottom: disparity.* ([mp4](demo.mp4))
+Left: trajectory (red) and keyframe point clouds. Right: left image, optical flow, disparity,
+and tracked / PnP-inlier counts.* ([mp4](docs/rerun_seq09.mp4))
 
 StereoFlowFormer is a transformer network that takes **two stereo pairs** (left/right at time
 *t* and *t+1*) and predicts dense optical flow, disparity for both frames, motion-instance masks
@@ -35,18 +31,6 @@ reaches **1.50 % / 0.76 %** translation error on the held-out KITTI odometry seq
 ## Pipeline
 ![StereoFlowFormer architecture](docs/architecture.svg)
 
-```
- L_t, R_t ────┬──► flow branch (GMFlow, swin attn, ⅛ + ¼ scales, 6 refinements) ──► flow fw/bw
- L_t+1, R_t+1 ┴──► stereo branch (GMStereo, 1D cross attn, 3 refinements) ───────► disparity t, t+1
-                         │ ¼-res estimates + features
-                         ▼
-                  geometry encoding (depth, rays, scene flow) + context encoder ──► 1/16 tokens
-                         ├──► mask head (8 slots, 3 decoder layers) ──────────────► motion masks
-                         └──► pose head (pose token, 4 encoder layers) ───────────► ego-motion + log-variance
-                                              │
-                                              ▼
-                  stereo VO: dense PnP init ─► PnP-RANSAC on tracks ─► keyframes ─► local / global BA
-```
 | Module | File | What it does |
 |---|---|---|
 | Matching branches | `dvo/models/match_branch.py` | UniMatch-equivalent flow and stereo branches (vendored UniMatch in `dvo/models/unimatch/`) |
@@ -195,7 +179,7 @@ Flow, disparity and masks for selected frames (written to `vis/`):
 ```Shell
 .venv/bin/python scripts/visualize.py --seq 09 --frames 0 200 400 --ckpt $CKPT
 ```
-Live view of the VO run in the [Rerun](https://rerun.io) viewer (camera, depth, masks, flow,
+Live view of the VO run in the [Rerun](https://rerun.io) viewer (camera, depth, flow,
 trajectory against ground truth and keyframe point clouds). `--save` writes an `.rrd` file instead:
 ```Shell
 .venv/bin/python scripts/rerun_vis.py --seq 09 --max_frames 300
