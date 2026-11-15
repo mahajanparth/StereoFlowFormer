@@ -1,7 +1,13 @@
 # StereoFlowFormer: Joint Flow, Stereo, Motion Masks and Ego-Motion for Stereo VO
 ### PyTorch · UniMatch · KITTI · Virtual KITTI 2
 
-<img src="demo.gif">
+<img src="docs/rerun_seq09.gif" width="100%" alt="Online VO on KITTI 09 in the Rerun viewer">
+
+*Online stereo VO on KITTI odometry seq. 09 (first 300 frames) in the [Rerun](https://rerun.io) viewer.
+Left: trajectory (red) and keyframe point clouds. Right: left image with motion masks, optical
+flow, disparity, and tracked / PnP-inlier counts.* ([mp4](docs/rerun_seq09.mp4))
+
+<img src="demo.gif" alt="Flow and stereo on KITTI 08">
 
 *KITTI odometry seq. 08. Top: left input. Middle: optical flow. Bottom: disparity.* ([mp4](demo.mp4))
 
